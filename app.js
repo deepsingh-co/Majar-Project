@@ -19,15 +19,39 @@ async function main(){
 
 app.set('view engine' , 'ejs');
 app.set('views' , path.join(__dirname , 'views'));
+app.use(express.urlencoded({extended : true}));
 
 app.get('/', (req , res) =>{
     res.send("Hii , I am A Root");
 });
 
+//index route for listings
 app.get("/listings" , async(req , res) =>{
     const allListings = await Listing.find({});
     res.render("listings/index.ejs" ,{allListings});
 });
+
+//new route
+app.get("/listings/new" , (req , res) =>{
+    res.render("listings/new.ejs");
+});
+
+//show route
+
+app.get("/listings/:id" , async(req , res) =>{
+    let {id}= req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/show.ejs" , {listing});
+});
+
+//create route
+app.post("/listings", async(req , res ) =>{
+    //let {title , description , price , location , country} = req.body;
+    const newlisting = new Listing(req.body.listing);
+    await newlisting.save();
+    res.redirect("/listings");
+});
+
 
 /*app.get("/testlistings", async (req, res) => {
     let sampleListing = new Listing({
