@@ -1,8 +1,12 @@
-/*body{
-    background-color: pink;
-}*/
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container{
+    flex: 1;
 }
 
 /*navbaar */
@@ -11,7 +15,7 @@ body {
     height: 5rem;
 }
 
-fa-compass{
+.fa-compass{
     color: #ed190a;
     font-size: 2rem;
 }
@@ -68,7 +72,7 @@ fa-compass{
 .card-img-top{
     border-radius: 1rem !important;
     width: 100% !important;
-    object-fit: cover;
+    object-fit: cover !important;
 }
 
 .card-body{
@@ -91,4 +95,9 @@ fa-compass{
 .card-img-overlay:hover{
     opacity : 0.2;
     background-color: white;
+}
+
+.add-btn{
+    background-color: #ef424d !important;
+    border: none !important;
 }
